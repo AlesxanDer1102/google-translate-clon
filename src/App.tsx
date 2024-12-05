@@ -4,13 +4,19 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import './App.css'
 import { useLenguage } from './hooks/useLenguage'
 import { AUTO_LANGUAGE } from './constants'
-import { ArrowsIcon } from './hooks/components/Icons'
+import { ArrowsIcon } from './components/Icons'
+import { LanguageSelector } from './components/LanguageSelector'
 
 function App() {
 	//3. Usar el hook useReducere
 
-	const { fromLanguage, toLanguage, setFromLenguage, interchangelanguages } =
-		useLenguage()
+	const {
+		fromLanguage,
+		toLanguage,
+		setFromLenguage,
+		setToLenguage,
+		interchangelanguages
+	} = useLenguage()
 
 	return (
 		<Container fluid>
@@ -18,7 +24,11 @@ function App() {
 
 			<Row>
 				<Col>
-					<h2>From</h2>
+					<LanguageSelector
+						type='from'
+						value={fromLanguage}
+						onChange={setFromLenguage}
+					/>
 					{fromLanguage}
 				</Col>
 				<Col>
@@ -31,7 +41,11 @@ function App() {
 					</Button>
 				</Col>
 				<Col>
-					<h2>To</h2>
+					<LanguageSelector
+						type='to'
+						value={toLanguage}
+						onChange={setToLenguage}
+					/>
 					{toLanguage}
 				</Col>
 			</Row>
